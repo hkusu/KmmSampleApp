@@ -35,6 +35,8 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation("io.ktor:ktor-client-android:1.5.2")
+
+                implementation("com.google.dagger:hilt-android:2.31.2-alpha")
             }
         }
         val androidTest by getting {
