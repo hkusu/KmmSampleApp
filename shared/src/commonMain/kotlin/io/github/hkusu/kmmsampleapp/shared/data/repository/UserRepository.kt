@@ -3,10 +3,11 @@ package io.github.hkusu.kmmsampleapp.shared.data.repository
 import io.github.hkusu.kmmsampleapp.shared.data.api.GitHubApi
 import io.github.hkusu.kmmsampleapp.shared.data.api.response.GitHubUserResponse
 import io.github.hkusu.kmmsampleapp.shared.model.User
+import io.github.hkusu.kmmsampleapp.shared.model.repository.UserRepository
 
-class UserRepository(private val gitHubApi: GitHubApi) {
+class UserRepositoryImpl(private val gitHubApi: GitHubApi) : UserRepository {
 
-    suspend fun getUserList(): List<User> {
+    override suspend fun getUserList(): List<User> {
         return gitHubApi.getUserList().map(GitHubUserResponse::toUser)
     }
 }

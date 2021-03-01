@@ -5,8 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import io.github.hkusu.kmmsampleapp.shared.data.api.GitHubApi
-import io.github.hkusu.kmmsampleapp.shared.data.repository.UserRepository
+import io.github.hkusu.kmmsampleapp.shared.data.repository.UserRepositoryImpl
 import io.github.hkusu.kmmsampleapp.shared.model.GetUserUseCase
+import io.github.hkusu.kmmsampleapp.shared.model.repository.UserRepository
 import javax.inject.Singleton
 
 @Module
@@ -21,7 +22,7 @@ object Module {
     @Provides
     @Singleton
     fun provideUserRepository(gitHubApi: GitHubApi): UserRepository {
-        return UserRepository(gitHubApi)
+        return UserRepositoryImpl(gitHubApi)
     }
 
     @Provides

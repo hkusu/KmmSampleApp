@@ -1,6 +1,6 @@
 package io.github.hkusu.kmmsampleapp.shared.model
 
-import io.github.hkusu.kmmsampleapp.shared.data.repository.UserRepository
+import io.github.hkusu.kmmsampleapp.shared.model.repository.UserRepository
 
 class GetUserUseCase(private val userRepository: UserRepository) {
 
