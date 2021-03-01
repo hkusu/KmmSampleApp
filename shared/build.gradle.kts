@@ -5,7 +5,6 @@ plugins {
     id("com.android.library")
     id("kotlinx-serialization")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 kotlin {
@@ -69,10 +68,6 @@ android {
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(29)
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
