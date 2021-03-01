@@ -5,7 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.hkusu.kmmsampleapp.shared.data.repository.UserRepository
+import io.github.hkusu.kmmsampleapp.shared.model.GetUserUseCase
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -13,14 +13,14 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     @Inject
-    lateinit var repository: UserRepository
+    lateinit var getUserUseCase: GetUserUseCase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
             val tv: TextView = findViewById(R.id.text_view)
-            tv.text = repository.getUserList().map { it.name }.joinToString("\n")
+            tv.text = getUserUseCase().map { it.name }.joinToString("\n")
         }
     }
 }

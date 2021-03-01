@@ -90,3 +90,8 @@ val packForXcode by tasks.creating(Sync::class) {
 }
 
 tasks.getByName("build").dependsOn(packForXcode)
+
+// 適用するとビルドエラーが解決することがある
+// kapt {
+//     correctErrorTypes = true
+// }

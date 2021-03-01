@@ -15,7 +15,7 @@ private fun createHttpClient(): HttpClient {
     }
 }
 
-object SharedCommonModule {
+object CommonModule {
     // singleton
     val httpClient: HttpClient by lazy {
         createHttpClient()
