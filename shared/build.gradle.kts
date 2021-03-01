@@ -24,8 +24,7 @@ kotlin {
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
-                // HttpClient クラスが Dagger 側から見えている必要がある為 api を利用
-                api("io.ktor:ktor-client-core:1.5.2")
+                implementation("io.ktor:ktor-client-core:1.5.2")
                 implementation("io.ktor:ktor-client-serialization:1.5.2")
             }
         }

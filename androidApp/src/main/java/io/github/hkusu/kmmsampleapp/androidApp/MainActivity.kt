@@ -5,8 +5,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.hkusu.kmmsampleapp.shared.GitHubApi
-import io.github.hkusu.kmmsampleapp.shared.HogeFuga
+import io.github.hkusu.kmmsampleapp.shared.data.repository.UserRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,16 +13,14 @@ import javax.inject.Inject
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
     @Inject
-    lateinit var hoge: HogeFuga
+    lateinit var repository: UserRepository
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         lifecycleScope.launch {
             val tv: TextView = findViewById(R.id.text_view)
-            tv.text = GitHubApi().getUserList().map { it.login }.joinToString("\n")
+            tv.text = repository.getUserList().map { it.name }.joinToString("\n")
         }
-
-        hoge.hello()
     }
 }
