@@ -4,6 +4,8 @@ plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
+    id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 kotlin {
@@ -22,7 +24,8 @@ kotlin {
 
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
-                implementation("io.ktor:ktor-client-core:1.5.2")
+                // HttpClient クラスが Dagger 側から見えている必要がある為 api を利用
+                api("io.ktor:ktor-client-core:1.5.2")
                 implementation("io.ktor:ktor-client-serialization:1.5.2")
             }
         }
@@ -37,6 +40,8 @@ kotlin {
                 implementation("io.ktor:ktor-client-android:1.5.2")
 
                 implementation("com.google.dagger:hilt-android:2.31.2-alpha")
+                // javax.annotation.Generated が見つからないエラーが出るので..
+                compileOnly("javax.annotation:javax.annotation-api:1.3.2")
             }
         }
         val androidTest by getting {
@@ -54,12 +59,21 @@ kotlin {
     }
 }
 
+// ref: https://www.reddit.com/r/Kotlin/comments/ack2r6/problem_using_kapt_in_a_multiplatform_project/
+dependencies {
+    "kapt"("com.google.dagger:hilt-android-compiler:2.31.1-alpha")
+}
+
 android {
     compileSdkVersion(29)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")
     defaultConfig {
         minSdkVersion(23)
         targetSdkVersion(29)
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 }
 
