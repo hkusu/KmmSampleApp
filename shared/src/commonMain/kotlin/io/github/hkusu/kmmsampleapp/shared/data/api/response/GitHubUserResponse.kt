@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class GitHubUserResponse(
+internal data class GitHubUserResponse(
     @SerialName("login")
     val login: String,
     @SerialName("avatar_url")
