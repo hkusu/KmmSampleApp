@@ -1,26 +1,23 @@
 package io.github.hkusu.kmmsampleapp.androidApp
 
 import android.os.Bundle
-import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import dagger.hilt.android.AndroidEntryPoint
-import io.github.hkusu.kmmsampleapp.shared.model.GetUserUseCase
-import kotlinx.coroutines.launch
-import javax.inject.Inject
+import io.github.hkusu.kmmsampleapp.androidApp.databinding.ActivityMainBinding
+import io.github.hkusu.kmmsampleapp.androidApp.databinding.ActivityMainBinding.bind
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(R.layout.activity_main) {
 
-    @Inject
-    lateinit var getUserUseCase: GetUserUseCase
+    private val binding by viewBinding(ActivityMainBinding::bind)
+    private val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        lifecycleScope.launch {
-            val tv: TextView = findViewById(R.id.text_view)
-            tv.text = getUserUseCase().map { it.name }.joinToString("\n")
+        viewModel.userList.observe(this) {
+            binding.textView.text = it.map { it.name }.joinToString("\n")
         }
     }
 }
