@@ -11,14 +11,14 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(getUserUseCase: GetUserUseCase) : ViewModel() {
+class MainViewModel @Inject constructor(getUser: GetUserUseCase) : ViewModel() {
 
     private val _userList: MutableLiveData<List<User>> = MutableLiveData()
     val userList = _userList as LiveData<List<User>>
 
     init {
         viewModelScope.launch {
-            _userList.value = getUserUseCase()
+            _userList.value = getUser()
         }
     }
 }
