@@ -16,7 +16,7 @@ internal object Module {
 
     @Provides
     fun provideGitHubApi(): GitHubApi {
-        return GitHubApi(CommonModule.httpClient)
+        return GitHubApi(Libs.httpClient)
     }
 
     @Provides
