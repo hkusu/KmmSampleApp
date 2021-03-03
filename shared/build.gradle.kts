@@ -59,7 +59,7 @@ kotlin {
 
 // ref: https://www.reddit.com/r/Kotlin/comments/ack2r6/problem_using_kapt_in_a_multiplatform_project/
 dependencies {
-    "kapt"("com.google.dagger:hilt-android-compiler:2.31.1-alpha")
+    "kapt"("com.google.dagger:hilt-android-compiler:2.31.2-alpha")
 }
 
 android {
